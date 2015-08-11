@@ -1,10 +1,10 @@
 @font-face {
     font-family: Anonymous;
-    src: url(fonts/Anonymous_Pro/AnonymousPro-Regular.ttf);
+    src: url(http://www.kobakhit.com/enkrypt-page/fonts/Anonymous_Pro/AnonymousPro-Regular.ttf);
 }
 @font-face {
     font-family: Anonymous;
-    src: url(fonts/Anonymous_Pro/AnonymousPro-Bold.ttf);
+    src: url(http://www.kobakhit.com/enkrypt-page/fonts/Anonymous_Pro/AnonymousPro-Bold.ttf);
     font-weight: bold;
 }
 

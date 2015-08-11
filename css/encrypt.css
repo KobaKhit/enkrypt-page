@@ -1,0 +1,182 @@
+@font-face {
+    font-family: Anonymous;
+    src: url(http://www.kobakhit.com/enkrypt-page/fonts/Anonymous_Pro/AnonymousPro-Regular.ttf);
+}
+@font-face {
+    font-family: Anonymous;
+    src: url(http://www.kobakhit.com/enkrypt-page/fonts/Anonymous_Pro/AnonymousPro-Bold.ttf);
+    font-weight: bold;
+}
+
+img.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body{
+	padding-bottom: 100px
+}
+
+.green{
+	color:green;
+}
+
+.blue {
+	color:#76B2C7;
+}
+
+.green-back{
+	background-color: #B2D9B2;
+}
+
+.blue-back{
+	background-color: lightblue;
+}
+.a-no {
+  color:black !important;
+  text-decoration: none;
+ }
+
+.bo:hover {
+  color:black !important;
+  font-weight: bold;
+ }
+
+.bo:hover .enc-item, .bo:hover .enc-item-in {
+  background-color: #EEE;
+}
+
+.title {
+	font-family: Anonymous,sans-serif;
+}
+
+.desc, .desc-ad {
+	font-family: Anonymous,sans-serif;
+	font-size: 16px;
+
+}
+
+.desc a,.desc-ad a {
+	color:green;
+}
+
+.desc a:hover,.desc-ad a:hover {
+	text-decoration: underline;
+}
+.desc-ad {
+	text-align: right;
+}
+
+#dropdownMenu1:hover{
+	background-color:#B2D9B2;
+	color:white;
+}
+
+#dropdownMenu2:hover{
+	background-color:#ADD8E6;
+	color:white;
+}
+
+#download{
+	position: absolute;
+	display:none;
+	top: 123px;
+	left: 100px;
+	padding: 5px 5px 5px 3px;
+	width: 100px;
+	border-top: #99CC99;
+	border-radius: 0px 0px 15px 15px;
+	text-decoration: none;
+	background: #99CC99;
+	color:white;
+	opacity: 0.87;
+}
+
+#download:hover{
+	opacity:1;
+	background: #66B366;
+	border-top: #66B366;
+}
+
+
+.textmsg{
+	font-family: Anonymous,monospace;
+	width:100%;
+	height:200px;
+	border: none;
+	padding: 15px;
+	resize: none;
+	background: #EEE;
+}
+
+.textsec{
+	font-family: Anonymous,monospace;
+	width:100%;
+	height:50px;
+	border: none;
+	padding: 15px;
+	resize: none;
+	background: #EEE;
+}
+
+.listu {
+	overflow:hidden; 
+	white-space: nowrap;
+	font-family: Anonymous,monospace;
+	
+}
+
+.listu li{
+	list-style:none;
+	text-decoration: none; 
+    overflow: hidden; 
+    display: block; 
+    padding:5px 0px;
+}
+
+.enc-item {
+	border-radius: 5px;
+	padding:4px 5px;
+	font-family: Anonymous,sans-serif;
+	font-weight: bold;
+	color:#3C3C3C;
+}
+
+#output {
+	display:none;
+}
+
+.textarea-ic{
+	float: right;
+	display: none;
+}
+
+.btns {
+	margin:150px 0px;
+}
+
+.btn-custom {
+	width:100%;
+	border-radius: 15px;
+
+}
+
+#encode {
+	display: none;
+}
+
+#file {
+	display: inline;
+}
+
+.steg-img {
+	width:100%;
+	max-width:300px;
+	padding:10px 0px;
+}
+
+.hid {
+	display:none;
+	overflow: hidden;
+}

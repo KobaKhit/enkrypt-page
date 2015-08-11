@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="user-scalable=yes">
+	    <meta name="description" content="Encypt and decrypt messages">
+	    <meta name="author" content="KobaKhit">
+
+	    <title>eикrypт</title>
+
+	    <!-- Bootstrap Core CSS -->
+	    <link href="http://www.kobakhit.com/enkrypt-page/css/bootstrap.css" rel="stylesheet">
+
+	    <!-- Custom CSS -->
+	    <link href="http://www.kobakhit.com/enkrypt-page/css/encrypt.css" rel="stylesheet">
+
+	     <!-- Jquery -->
+	    <script src="http://www.kobakhit.com/enkrypt-page/js/utils/jquery.js"></script>
+
+	    <!-- Bootstrap Core JavaScript -->
+    	<script src="http://www.kobakhit.com/enkrypt-page/js/utils/bootstrap.min.js"></script>
+
+    	<!-- Custom Fonts -->
+    	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    	<!-- Additional crypto algos -->
+    	<script src="http://www.kobakhit.com/enkrypt-page/js/tea.js"></script>
+    	<script src="http://www.kobakhit.com/enkrypt-page/js/steganography.js"></script>
+
+	   
+	</head>
+	<body>
+		<div class = 'container'>
+			<h1 class = 'title'>eикrypт</h1>
+			<div class = 'row'>
+				<div class = 'col-lg-7 desc'>
+					<p>
+					eикrуpт, inspired by <a href = 'http://cryptii.com' target='_blank'>cryptii</a>, is a web page where you can encrypt/decrypt messages using algorythms such as AES, DES, etc. Everything is done in your browser using javascript, <a href='https://code.google.com/p/crypto-js/' target='_blank'>cryptojs</a>, <a href='http://www.movable-type.co.uk/scripts/tea-block.html' target = '_blank'>tea.js</a> and <a href='http://www.peter-eigenschink.at/projects/steganographyjs/' target = '_blank'>steganographyjs</a>. Nothing is send to the server (there is no back-end). 
+					<i class="fa fa-stop fa-1x" style = 'color:#66B366'></i><i class="fa fa-stop fa-1x" style="color:#7BB8FB"></i>
+					</p>
+					<p><b>Disclaimer:</b> The algorithms do not provide 100% secure encryption. Additionally, <a href = 'http://tonyarcieri.com/whats-wrong-with-webcrypto' target='_blank'>in-browser encryption is a problem</a> of itself.</p>
+				</div>
+				<div class = 'col-lg-5 desc-ad'>
+					<p>created with curiosity</p>
+					<p>by <a href='http://www.kobakhit.com/'>kobakhit</a>
+						<a class = 'a-no' href = 'https://github.com/KobaKhit'><i class="fa fa-github fa-lg"></i></a>
+					</p>
+					<!-- Go to www.addthis.com/dashboard to customize your tools -->
+					<div class="addthis_sharing_toolbox"></div>
+					<p style = 'font-size:0.8em'>viXPTNp7e0+C9KzzaIrSEfyKRNljC7UW7mYOjg==</p>
+				</div>
+			</div>
+			<br>
+			<div class = 'col-lg-5'>
+				<div>
+					<button class="btn btn-default btn-block green" type="button" id="dropdownMenu1"><h4>Text</h4><i class="arrow glyphicon glyphicon-chevron-down" aria-hidden="true"></i>
+					</button>
+				</div>
+				<h4><i class="fa fa-stop fa-1x" style = 'color:#91C891'></i> Input</h4>
+				<div class='hid to'>
+					<img id="steg-in-img" src="#" alt = '' class = 'steg-img center'>
+					<input id = 'file' type = 'file' onchange='readURL(this);'></input>
+				</div>
+				<textarea id = 'input' class = 'textmsg togg'>Type your secret message here ... </textarea>
+				<textarea id = 'secret' class = 'textsec togg'>Enter a secret key here</textarea>
+				
+				<ul  id = 'in' class = 'listu' style = "display:none"></ul>
+			</div>
+
+			<div class = 'col-lg-2 btns' align='middle'>
+				<button id = 'encrypt' class='btn btn-default btn-custom'><i class="fa fa-lock fa-4x"></i></button>
+				<p></p>
+				<button id = 'encode' class='btn btn-default btn-custom'><i class="fa fa-lock fa-4x"></i></button>
+			</div>
+
+			<div class = 'col-lg-5'>
+				<div>
+				  <button class="btn btn-default btn-block text-left blue" type="button" id="dropdownMenu2"><h4>Text</h4> <i class="arrow glyphicon glyphicon-chevron-up" aria-hidden="true"></i>
+				  </button>
+				</div>
+				<h4><i class="fa fa-stop fa-1x" style="color:#B5DCE8"></i> Output</h4>
+				<div class='hid to'>
+					<img id="steg-out-img" src="#" alt = ''  class = 'steg-img center'>
+					<a id="download" class="btn small" rel="nofollow" download="encoded-img.png" href="">
+    					<strong>Download</strong>
+    				</a>
+				</div>
+				<textarea id = 'output' class = 'textmsg togg' readonly></textarea>
+				
+				<span class='textarea-ic'><a  title="Read about ..." class = 'a-no' href='https://en.wikipedia.org/wiki/ASCII' target = '_blank'><i class = 'glyphicon glyphicon-info-sign'></i></a></span>
+				<ul id = 'out' class = 'listu'></ul>
+			</div>
+
+		</div>
+
+		<script>
+			// load cryptojs algorithms. lazy to write html myself
+			var a = ['aes.js','hmac-md5.js','hmac-ripemd160.js','hmac-sha1.js','hmac-sha224.js','hmac-sha256.js','hmac-sha3.js','hmac-sha384.js','hmac-sha512.js','md5.js','pbkdf2.js','rabbit-legacy.js','rabbit.js','rc4.js','ripemd160.js','sha1.js','sha224.js','sha256.js','sha3.js','sha384.js','sha512.js','tripledes.js'];
+
+			for(var i = 0;i<a.length;i++){
+				var s = document.createElement("script");
+				s.type = "text/javascript";
+				s.src = "http://www.kobakhit.com/enkrypt-page/js/cryptojs/rollups/" + a[i];
+				$("body").append(s);
+			}
+		</script>
+
+		<!-- Custom js -->
+    	<script src = 'http://www.kobakhit.com/enkrypt-page/js/encrypt.js' type="text/javascript" ></script>
+
+		<!-- Go to www.addthis.com/dashboard to customize your tools -->
+		<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54e628a0244b5bf5" async="async"></script>
+
+		<!-- Google Analytics tracking -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('require', 'displayfeatures');
+      ga('create', 'UA-56760962-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+	</body>
+</html>
